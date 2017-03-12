@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My First Progressive Web App</title>
+        <link rel="manifest" href="./manifest.json">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="logo/logo_96.png" type="image/gif" sizes="96x96">
+        <base href="" target="_blank">
+        <meta name="theme-color" content="#0174C7">
+        <meta name="msapplication-navbutton-color" content="#0174C7">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#0174C7">
+        <link rel="stylesheet" href="./css/w3.min.css">
+        <link rel="stylesheet" href="./css/Material-Icons.css">
+        <link rel="stylesheet" type="text/css" href="./css/custom.css">
+
+        <script type="text/javascript" src="js/angular.min.js"></script>
+
+    </head>
+    <body ng-app="pwa" ng-controller="pwaCtrl">
+        <header>
+            <div class="navbar" id="navbar">
+                <div class="container">
+                    <div class="header">
+                        <h3 class="text">Menu</h3>
+                        <i class="material-icons close-btn" onClick="closeNavbar()">close</i>
+                    </div>
+                    <div class="list">
+                        <ul class="w3-ul w3-border">
+                            <li>
+                                <h2>Sub Menu</h2>
+                            </li>
+                            <li><i class="material-icons list-icon">perm_contact_calendar</i><span>Contacts</span> </li>
+                            <li><i class="material-icons list-icon">details</i><span>Contact Details</span></li>
+                            <li><i class="material-icons list-icon">face</i><span>Profile</span></li>
+                            <li><i class="material-icons list-icon">message</i><span>Messages</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <i class="material-icons padding-15 cursor-pointer" onClick="openNavbar()">menu</i>
+            <h3 class="header-text">Users</h3>
+            <i class="material-icons padding-15 search">search</i>
+        </header>
+        <content ng-if="!isFetching" ng-cloak>
+            <ul class="w3-ul w3-card-4 list" ng-if="data.length">
+                <li class="w3-padding-16 position-relative w3-row" ng-repeat="user in data">
+                    <div class="w3-col s10 m10 l10">
+                        <img ng-src="{{user.picture_url}}" class="w3-left w3-circle"">
+                        <span class="w3-xlarge margin-left-10 face-name">{{user.name}}</span><br>
+                        <span class="margin-left-10 face-email">{{user.email}}</span>
+                    </div>
+                    <div class="w3-col s2 m2 l2">
+                        <i class="material-icons face-call">call</i>
+                    </div>
+                </li>
+            </ul>
+            <div ng-if="!data.length" class="no-data">
+                <i class="material-icons">event_note</i>
+                <div class="text">No Data</div>
+                <br>
+                <button class="w3-button w3-grey" ng-click="fetchAgain()"><i class="material-icons">autorenew</i></button>
+            </div>
+        </content>
+        
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/custom.js" async></script>
+        
+    </body>
+</html>
